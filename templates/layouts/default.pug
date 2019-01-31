@@ -1,0 +1,241 @@
+include ../mixins/flash-messages
+
+doctype html
+html
+
+	//- HTML HEADER
+	head
+		meta(charset="utf-8")
+		meta(name="viewport", content="width=device-width, initial-scale=1.0")
+		meta(http-equiv="X-UA-Compatible" content="IE=edge")
+
+		title= title || 'Twin Image Design'
+		link(rel="shortcut icon", href="/favicon.ico", type="image/x-icon")
+
+		//- Customise the stylesheet for your site by editing /public/styles/site.sass
+		style html{visibility: hidden;opacity:0;}
+		link(href="/styles/site.css", rel="stylesheet")
+		//- link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css', integrity='sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm', crossorigin='anonymous')
+		link(rel='stylesheet', href='https://use.fontawesome.com/releases/v5.4.1/css/all.css', integrity='sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz', crossorigin='anonymous')
+		link(rel='stylesheet', href='https://use.fontawesome.com/releases/v5.4.1/css/brands.css', integrity='sha384-Px1uYmw7+bCkOsNAiAV5nxGKJ0Ixn5nChyW8lCK1Li1ic9nbO5pC/iXaq27X5ENt', crossorigin='anonymous')
+  		
+		//- This file provides the default styling for the KeystoneJS Content Editor
+		if user && user.canAccessKeystone
+			link(href="/keystone/styles/content/editor.min.css", rel="stylesheet")
+
+		//- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
+		//- Safely remove this block if you are not targeting IE8
+		//-[if lt IE 9]
+			script(src="//cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.js")
+			script(src="//cdn.jsdelivr.net/respond/1.4.2/respond.min.js")
+		//-[endif]
+
+		//- Include template-specific stylesheets by extending the css block
+		block css
+			link(href="/styles/responsee.css", rel="stylesheet")
+	
+		//- Add any other template-specific HEAD tags by extending the head block
+		block head
+
+	//- HTML BODY
+	body
+		//- HEADER
+		//- Customise your site's navigation by changing the navLinks Array in ./routes/middleware.js
+		header(role="navigation").header#header
+			.header-inner
+				a.header-home-link(href='/')
+					//- svg.header-logo(viewBox='-100 -450 4608 3456', xmlns='http://www.w3.org/2000/svg')
+					//- 	defs#svg-p
+					//- 		clippath#a
+					//- 			path(d='M0 2592h3456V0H0z')
+					//- 	g.svg-logo(transform='matrix(1.3333 0 0 -1.3333 0 3456)', clip-path='url(#a)')
+					//- 		path(d='m1012.9 2556h385.55l97.786-1871.5h-46.317l-226.31 1593.9h-488.4zm1142.2 0h-385.57l-97.68-1871.5h46.254l226.08 1593.9h488.59z')
+					//- 		path(d='m1012.9 2556h385.55l97.786-1871.5h-46.317l-226.31 1593.9h-488.4zm1142.2 0h-385.57l-97.68-1871.5h46.254l226.08 1593.9h488.59z')
+					//- 		path( id="logo-center-stroke" d='m1460.1 2550.9h246.83l-51.385-437.12h-143.91z', fill='none', stroke-width='20', stroke='black')
+					svg.header-logo(viewBox='100 -433 4608 3756', xmlns='http://www.w3.org/2000/svg')
+						defs
+							clippath#a
+								path(d='M0 2592h3456V0H0z')
+						g.header-logo(transform='matrix(1.3333 0 0 -1.3333 0 3456)', clip-path='url(#a)')
+							path(d='m1012.9 2556h385.55l97.786-1871.5h-46.317l-226.31 1593.9h-488.4zm1142.2 0h-385.57l-97.68-1871.5h46.254l226.08 1593.9h488.59z')
+							path( id="logo-center-stroke" d='m1460.1 2550.9h246.83l-51.385-437.12h-143.91z', fill='none', stroke-width='20', stroke='white')
+							path(d='m247.75 918.33h-70.595v18.114h172.62v-18.114h-69.159v-139.46h-32.869zm242.27 22.105l19.612-110.77h0.909l42.707 77.435h8.804l42.706-77.435h0.971l20.099 110.77 33.29-2.429-36.754-163.14h-11.272l-53.431 97.151-53.496-97.151h-11.232l-36.774 163.14zm309.34-143.41h35.762v121.3h-35.762v18.114h104.94v-18.114h-36.269v-121.3h36.269v-18.156h-104.94zm261.33 139.42h40.702l99.052-132.83 0.993 0.632-2.935 40.829v91.368h32.828v-157.57h-40.723l-99.053 132.79-0.907-0.653 2.872-41.062v-91.072h-32.829zm824.59-139.42h35.784v121.3h-35.784v18.114h104.92v-18.114h-36.268v-121.3h36.268v-18.156h-104.92zm289.3 109.48h-0.949l-6.376-127.64h-34.814l10.241 157.57h43.127l46.129-68.399 46.126 68.399h43.067l10.323-157.57h-34.834l-6.354 127.64h-0.949l-57.379-83.218zm351.56 6.377l-36.354-72.96h72.685zm-45.157-91.115l-24.026-46.908-32.318 7.346 80.411 154.24h42.137l80.412-154.24-32.321-7.346-23.561 46.908zm425.62-28.457c-21.07-10.198-52.461-17.226-78.491-17.226-75.007 0-96.539 43.022-96.539 81.699 0 38.125 22.503 81.403 95.568 81.403 34.348 0 64.22-12.414 81.889-30.273l-27.907-11.125c-12.289 12.623-30.949 22.335-55.881 22.335-50.498 0-59.387-39.056-59.387-62.974 0-24.447 8.889-61.939 60.357-61.939 16.636 0 33.292 2.66 47.563 8.148v41.419h-61.305v18.156h94.133zm301.93 116.95h-176.15v21.068h176.15zm0-66.035h-176.15v21.068h176.15zm0-66.034h-176.15v21.047h176.15z')
+							path(d='m3371.7 951.09c0-23.814-19.296-43.087-43.068-43.087-23.791 0-43.064 19.273-43.064 43.087 0 23.77 19.273 43.065 43.064 43.065 23.772 0 43.068-19.295 43.068-43.065z', fill='none', stroke='white', stroke-width='10')
+							text(transform='matrix(1 0 0 -1 3306.1 923.38)', fill='white', font-family='Myriad', font-size='81.591', font-weight='400')
+								tspan(x='0', y='0') R
+							text.header-logo(transform='matrix(1 0 0 -1 674.49 144.31)', fill='white', font-family='Arial', font-size='507.05', font-weight='400')
+								tspan(x='0 366.08966 648.00916 986.21106 1127.1708 1521.6553', y='0') D SIGN
+							path.header-logo(fill='white', d='m1305.1 450.55h-256.48v46.825h256.48zm0-146.97h-256.48v46.824h256.48zm0-146.97h-256.48v46.867h256.48z')
+				.header-util
+					a.menu-button.js-menu-button
+						svg.menu-icon(xmlns="http://www.w3.org/2000/svg" viewbox="0 0 100 100")
+							g(fill="none" fill-rule="evenodd" stroke="#979797")
+								path(d="M13,26.5 L88,26.5")
+								path(d="M13,50.5 L88,50.5")
+								path(d="M13,50.5 L88,50.5")
+								path(d="M13,74.5 L88,74.5")
+					.theme
+						img(src="/images/light.png", alt="theme-icon")
+
+				nav.header-icons
+
+					button#quotebtn.btn.btn-info
+						a(href='/contact') Get Quick Quote
+					a.icon.header-icon-link(class="header-icon-facebook'", href='https://www.facebook.com/Twin-Image-Design', target='_blank')
+						svg(xmlns='http://www.w3.org/2000/svg', width='32', height='32', viewBox='0 0 32 32')
+							path(d='M29 0H3C1.35 0 0 1.35 0 3v26c0 1.65 1.35 3 3 3h13V18h-4v-4h4v-2c0-3.306 2.694-6 6-6h4v4h-4c-1.1 0-2 .9-2 2v2h6l-1 4h-5v14h9c1.65 0 3-1.35 3-3V3c0-1.65-1.35-3-3-3z')
+		
+		//- .important-contact
+		//- 	a(href='tel:8153150550') 
+		//- 		span= '1-(815)-315-0500'
+		//- 	a(href='mailto:m.potempa@twinimageinc.com') 
+		//- 		span= 'm.potempa@twinimageinc.com'
+
+		aside.mat-drawer
+			ul#draw-items
+				if user
+					if user.canAccessKeystone
+						a(href='/keystone') Open Keystone 
+						a(href='/keystone/signout') Sign Out
+
+				h4.title='twin image design'
+
+
+				each link in navLinks
+					li(class=(section == link.key ? 'active' : null)): a(href=link.href)= link.label
+				
+				hr.divider
+
+				h4.title='Our Works'
+				a(href="/portfolio/all") All
+				if categories
+					each link in categories
+						li(class=(section == link.key ? 'active' : null)): a(href='/portfolio/'+ link.key)= link.name
+					
+		//- BODY
+		#body
+
+			//- NOTE:
+			//- There is no .container wrapping class around body blocks to allow more flexibility in design.
+			//- Remember to include it in your templates when you override the intro and content blocks!
+
+			//- The Intro block appears above flash messages (used for temporary information display)
+			block intro
+
+			//- Flash messages allow you to display once-off status messages to users, e.g. form
+			//- validation errors, success messages, etc.
+			+flash-messages(messages)
+
+			//- The content block should contain the body of your template's content
+			block content
+
+		block foot
+			footer.footer-container
+				.newline
+					.row
+						.col-md-7.footer-left.footer-left
+							.company-logo.text-center.col-md-12.col-lg-6
+								svg.section-logo(viewBox='100 -433 4608 3756', xmlns='http://www.w3.org/2000/svg')
+									defs
+										clippath#a
+											path(d='M0 2592h3456V0H0z')
+									g.section-logo(transform='matrix(1.3333 0 0 -1.3333 0 3456)', clip-path='url(#a)')
+										path(d='m1012.9 2556h385.55l97.786-1871.5h-46.317l-226.31 1593.9h-488.4zm1142.2 0h-385.57l-97.68-1871.5h46.254l226.08 1593.9h488.59z')
+										path( id="logo-center-stroke" d='m1460.1 2550.9h246.83l-51.385-437.12h-143.91z', fill='none', stroke-width='20', stroke='white')
+										path(d='m247.75 918.33h-70.595v18.114h172.62v-18.114h-69.159v-139.46h-32.869zm242.27 22.105l19.612-110.77h0.909l42.707 77.435h8.804l42.706-77.435h0.971l20.099 110.77 33.29-2.429-36.754-163.14h-11.272l-53.431 97.151-53.496-97.151h-11.232l-36.774 163.14zm309.34-143.41h35.762v121.3h-35.762v18.114h104.94v-18.114h-36.269v-121.3h36.269v-18.156h-104.94zm261.33 139.42h40.702l99.052-132.83 0.993 0.632-2.935 40.829v91.368h32.828v-157.57h-40.723l-99.053 132.79-0.907-0.653 2.872-41.062v-91.072h-32.829zm824.59-139.42h35.784v121.3h-35.784v18.114h104.92v-18.114h-36.268v-121.3h36.268v-18.156h-104.92zm289.3 109.48h-0.949l-6.376-127.64h-34.814l10.241 157.57h43.127l46.129-68.399 46.126 68.399h43.067l10.323-157.57h-34.834l-6.354 127.64h-0.949l-57.379-83.218zm351.56 6.377l-36.354-72.96h72.685zm-45.157-91.115l-24.026-46.908-32.318 7.346 80.411 154.24h42.137l80.412-154.24-32.321-7.346-23.561 46.908zm425.62-28.457c-21.07-10.198-52.461-17.226-78.491-17.226-75.007 0-96.539 43.022-96.539 81.699 0 38.125 22.503 81.403 95.568 81.403 34.348 0 64.22-12.414 81.889-30.273l-27.907-11.125c-12.289 12.623-30.949 22.335-55.881 22.335-50.498 0-59.387-39.056-59.387-62.974 0-24.447 8.889-61.939 60.357-61.939 16.636 0 33.292 2.66 47.563 8.148v41.419h-61.305v18.156h94.133zm301.93 116.95h-176.15v21.068h176.15zm0-66.035h-176.15v21.068h176.15zm0-66.034h-176.15v21.047h176.15z')
+										path(d='m3371.7 951.09c0-23.814-19.296-43.087-43.068-43.087-23.791 0-43.064 19.273-43.064 43.087 0 23.77 19.273 43.065 43.064 43.065 23.772 0 43.068-19.295 43.068-43.065z', fill='none', stroke='white', stroke-width='10')
+										text(transform='matrix(1 0 0 -1 3306.1 923.38)', fill='white', font-family='Myriad', font-size='81.591', font-weight='400')
+											tspan(x='0', y='0') R
+										text.section-logo(transform='matrix(1 0 0 -1 674.49 144.31)', fill='white', font-family='Arial', font-size='507.05', font-weight='400')
+											tspan(x='0 366.08966 648.00916 986.21106 1127.1708 1521.6553', y='0', fill='white') D SIGN
+										path.section-logo(fill='white', d='m1305.1 450.55h-256.48v46.825h256.48zm0-146.97h-256.48v46.824h256.48zm0-146.97h-256.48v46.867h256.48z')
+							.col-sm-12.col-md-12.col-lg-6
+								if companyOverview
+								else
+									p.companyOverview.col-lg-12
+										| Sign-up our newsletter to get more deals and offers!
+									.mailing-form
+										form.col-md-12(method='post')
+											input(type='hidden', name='subscribe', value='subscribe')
+											.form-group
+												input#subscribe-email
+											.form-actions
+												button#subscribeBtn(type='submit') Subscribe
+							//- .links
+							//- 	ul
+							//- 		li
+							//- 			a(href='#')
+							//- 				| Contact
+							//- 		li
+							//- 			a(href='#')
+							//- 				| Our Works
+							//- 		li
+							//- 			a(href='#')
+							//- 				| About
+							//- 		li
+							//- 			a(href='#')
+							//- 				| Services
+										
+						.col-md-5.offset-md-1.footer-right
+							.footer-social
+								a(href='https://www.facebook.com/Twin-Image-Design')
+									i.fab.fa-facebook-f
+								//- a(href='#')
+								//- 	i.fab.fa-youtube
+								//- a(href='#')
+								//- 	i.fab.fa-twitter
+								//- a(href='#')
+								//- 	i.fab.fa-instagram
+								//- a(href='#')
+								//- 	i.fab.fa-pinterest
+							.footer-copyright
+								ul.contact-info
+									li#cell.col-md-7.col-sm-6
+										a(href='tel:8153150550') 
+											|	1-(815)-315-0500
+									li#fax.col-md-7.col-sm-6
+										a(href='tel:8153150551') 
+											|	1-(815)-315-0501
+									li#address.col-md-7.col-sm-6
+										a(href='https://goo.gl/maps/AdAKra3tVrJ2') 
+											| 525 West Stephenson. Freeport IL 61032 US
+									li#email.col-md-7.col-sm-6
+										a(href='mailto:m.potempa@twinimageinc.com') 
+											| m.potempa@twinimageinc.com
+									li.col-md-7.col-sm-6
+										button.btn.btn-primary
+											a(href='/contact') 
+												| Get a quote today by uploading your file!
+												
+								p 
+									| ©2019 Twin Image Design Inc. All Rights Reserved
+				.footer-bottom
+					a.scroll-link
+						i.fas.fa-chevron-up
+
+		//- JAVASCRIPT
+
+		//- jQuery 1.11.3 is included by default, and required by both Bootstrap
+		//- and the KeystoneJS Content Editor. If you are not targeting IE8,
+		//- you can upgrade to 2.1.4 (also bundled) for better performance.
+		script(src='https://code.jquery.com/jquery-3.3.1.min.js', integrity='sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=', crossorigin='anonymous')
+
+		//- Customise which Bootstrap javascript files are served by including
+		//- them specifically here, instead of bootstrap-3.3.5.min.js
+		script(src='/js/bootstrap/bootstrap-3.3.5.min.js')
+	
+		//- The KeystoneJS Content Editor provides support for ks-editable data attributes,
+		//- which generate links to edit content for users who can access Keystone
+		if user && user.canAccessKeystone
+			script(src='/keystone/js/content/editor.js')
+
+		//- Add scripts that are globally required by your site here.
+
+		//- Include template-specific javascript files by extending the js block
+		block js
+			script(src='/js/jquery.sticky.js')
+			script(src='https://unpkg.com/infinite-scroll@3/dist/infinite-scroll.pkgd.min.js')
+			script(src='/js/sticky-footer.min.js')
+			script(src='/js/load.js')
+			script(src='/js/responsee.js')
+

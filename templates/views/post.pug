@@ -1,0 +1,68 @@
+extends ../layouts/default
+
+mixin post(post)
+  figure.portfolios-item(data-ks-editable=editable(user, { list: 'Post', id: post.id }))
+    if post.images
+      a.portfolios-link(href='/portfolio/post/' + post.slug)
+        .fig-wrapper
+          figcaption
+            h3.portfolios-title.title= post.title
+            each cat in post.categories 
+              p.portfolios-category=cat.key 
+      img.img(src= post.images.cover.url)
+
+
+block content
+   if !data.post
+      h2 Invalid Post.
+   else 
+      section#feature.newline(data-ks-editable=editable(user, { list: 'Post', id: data.post.id }))
+            img(src=data.post.images.cover.url)#feature-img
+   
+      section#details.newline
+         //- P=data.post
+         .title-container
+            h1.title= data.post.title
+         .meta-container
+            .meta-block
+               span.meta-title published on
+               p.meta-value= data.post._.publishedDate.format('YYYY/MM/DD')
+            
+            .meta-block
+               if data.post.categories != ''
+                  span.meta-title category
+                  .meta-value
+                     each cat in data.post.categories
+                        span: p.catname= cat.name
+
+            .meta-block
+               span.meta-title tags
+               .meta-value
+                  span
+                     a(href='/')= 'some tags'
+            .meta-block
+               span.meta-title client
+               p.meta-value= 'some company'
+         .content-container
+            !=data.post.content.brief
+            !=data.post.content.extended
+            
+           
+      
+      section#images.newline
+            !=data.post.content.project_img
+            each image in data.post.images.image
+                  img.project-img(src=image.url)
+                  if image.desc
+                        p.project-img
+                              | Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sapiente, reiciendis architecto. 
+                              | At, doloremque veniam doloribus esse iure rerum eligendi? Fugiat sunt totam veniam alias 
+                              | mollitia laborum quis inventore nemo laudantium?'
+
+      section#related.newline
+            .row
+              h2.text-center.text-capitalize= 'you might also enjoy'
+            #portfolios
+                  each post in data.posts.results
+                        if post.title != data.post.title
+                              +post(post)

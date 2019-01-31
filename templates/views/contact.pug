@@ -1,0 +1,46 @@
+extends ../layouts/default
+
+block content
+	.newline.contact-wrapper
+		if !enquirySubmitted
+
+			.contact-form-wrapper.col-sm-12.col-md-12.col-lg-6
+				h3#form-title= 'How Can We Help You?'
+				form(method='post', enctype='multipart/form-data')
+					input(type='hidden', name='action', value='contact')
+					.row1
+						.form-group.col-sm-12.col-xs-12.col-md-6
+							label= 'First Name'
+							input#contact-firstname.contact-firstname.form-control(type='text', name='firstname',value=formData.firstname)
+						.form-group.col-sm-12.col-xs-12.col-md-6
+							label= 'Last Name'
+							input#contact-lastname.contact-lastname.form-control(type='text', name='lastname',value=formData.lastname)
+					.row2
+						.form-group.col-sm-12.col-xs-12.col-md-6
+							label= 'Email'
+							input#contact-email.contact-email.form-control(type='email', name='email',value=formData.email)
+						.form-group.col-sm-12.col-xs-12.col-md-6
+							label= 'Phone - Optional'
+							input#contact-phone.form-control(type='tel', name='phone',
+			pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}", maxlength="14",value=formData.phone, onkeypress='return false' )
+					.form-group
+						label= 'Subject'
+						input#contact-subject.form-control(type='text', name='subject', value=formData.subject)
+					.form-group
+						label(for='file_upload')= 'Attach File'
+						input#file_upload(type='file', name='file_upload', value=formData.file_upload)
+					.form-group
+						label= 'Message'
+						textarea#contact-message.contact-message.form-control(name='message', rows=8)= formData.message
+						.form-actions.text-center
+							button(type='submit').contactBtn Send message
+			.col-xs-12.col-md-12.col-lg-6
+				iframe#gmap_canvas( src='https://maps.google.com/maps?q=525%20West%20Stephenson.%20Freeport%20IL%2061032%20US&t=&z=15&ie=UTF8&iwloc=&output=embed', frameborder='0', disableDefaultUI: true)
+
+		else
+			.newline.text-center
+				h3 Thanks for getting in touch! We will get back to you soon.
+				a(href="/") 
+					button(type='submit') Back to Home
+			
+			

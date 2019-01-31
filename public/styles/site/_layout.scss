@@ -1,0 +1,15 @@
+@import "site/variables";
+
+
+#footer {
+	margin-top: 30px;
+	border-top: 1px solid $light;
+	padding-top: 30px;
+	color: $color_storm_dust_80_approx;
+}
+
+.gallery-image img {
+	display: block;
+	max-width: 100%;
+	height: auto;
+}

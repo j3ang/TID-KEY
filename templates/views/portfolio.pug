@@ -1,0 +1,47 @@
+extends ../layouts/default
+
+mixin post(post)
+	figure.portfolios-item(data-ks-editable=editable(user, { list: 'Post', id: post.id }))
+		if post.images
+			a.portfolios-link(href='/portfolio/post/' + post.slug)
+				.fig-wrapper
+					figcaption
+						h3.portfolios-title.title= post.title
+						each cat in post.categories
+							p.portfolios-category=cat.name
+
+			img.img(src= post.images.cover.url) 
+
+
+block intro
+	.newline.portfolios-top
+		h1.category-title= data.category ? data.category.name : 'Twin Image Design Projects'
+		
+		if data.category
+			.text-center.category-brief
+				!= data.category.brief 
+		
+block content
+	#portfolios.newline
+		each post in data.posts
+			+post(post)
+	if data.posts.next 
+		button#loadMoreBtn.view-more-button.btn-outline.center-block Load More
+
+	// status elements
+	.newline
+		.scroller-status
+			.infinite-scroll-request.loader-ellips
+				span.loader-ellips__dot
+				span.loader-ellips__dot
+				span.loader-ellips__dot
+				span.loader-ellips__dot
+			p.infinite-scroll-last End of content
+			a(href="/contact").btn#subscribeBtn.infinite-scroll-last Get in contact
+			p.infinite-scroll-error No more pages to load
+
+		// pagination has path
+		if data.posts.next 
+			p.pagination
+				a.pagination__next(href='?page=' + data.posts.next) Next
+

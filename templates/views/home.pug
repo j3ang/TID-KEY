@@ -1,0 +1,91 @@
+extends ../layouts/default
+
+mixin post(post)
+	figure.portfolios-item(data-ks-editable=editable(user, { list: 'Post', id: post.id }))
+		if post.images
+			a.portfolios-link(href='/portfolio/post/' + post.slug)
+				.fig-wrapper
+					figcaption
+						h3.portfolios-title.title= post.title
+						each cat in post.categories
+							p.portfolios-category=cat.name 
+			img.img(src= post.images.cover.url) 
+
+
+			//- a(href='/portfolio/post/' + post.slug)
+			//- a(href='/portfolio', class=!data.category ? 'active' : false).list-group-item All Categories
+
+//- carousel
+mixin carousel(id,items)
+	.carousel.slide(id="carousel-" + id ,data-ride="carousel")
+		//- Wrapper for slides
+		.carousel-inner(role="listbox")
+			each item,index in items
+				if(index === 0)
+					.item.active
+						a(href='/portfolio/post/' + item.slug)
+							img(src=item.images.cover.url)
+
+				else
+					.item
+						a(href='/portfolio/post/' + item.slug)
+							img.d-block.w-100.h-100(src=item.images.cover.url)
+		//- Indicators
+		ol.carousel-indicators
+			each item,index in items
+				if(index === 0)
+					li.active(data-target="#carousel-" + id, data-slide-to=index)
+				else
+					li(data-target="#carousel-" + id, data-slide-to=index)
+
+		//-  Controls
+		a.left.carousel-control(href="#carousel-" + id, role="button", data-slide="prev")
+			span.sr-only Previous
+		a.right.carousel-control(href="#carousel-" + id, role="button", data-slide="next")
+			span.sr-only Next
+
+
+block intro
+	.newline
+		+carousel(0, data.featurePosts)
+
+	#categories.items.newline
+		.category-container
+			if data.categories.length
+				each cat in data.categories
+					figure.item.category-item
+						
+						a.catgory-link(href='/portfolio/' + cat.key, class=data.category && data.category.id == cat.id ? 'active' : false)
+							.cat-wrapper
+								.fig-wrapper
+									figcaption
+										p.category-name=cat.name
+										p.category-count=cat.postCount
+								img.img(src=cat._.background.fit())
+							.overlay-background
+
+block content
+	#portfolios.newline
+		each post in data.posts.results
+			+post(post)
+	button#loadMoreBtn.view-more-button.btn-outline.center-block Load More
+
+	// status elements
+	.newline
+		.scroller-status
+			.infinite-scroll-request.loader-ellips
+				span.loader-ellips__dot
+				span.loader-ellips__dot
+				span.loader-ellips__dot
+				span.loader-ellips__dot
+			p.infinite-scroll-last End of content
+			a(href="/contact").btn#subscribeBtn.infinite-scroll-last Get in contact
+			p.infinite-scroll-error No more pages to load
+
+		// pagination has path
+		if data.posts.next 
+			p.pagination
+				a.pagination__next(href='?page=' + data.posts.next) Next
+
+
+
