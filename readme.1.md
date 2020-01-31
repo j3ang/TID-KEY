@@ -1,2 +1,0 @@
-deploy method: heroku cli
-
