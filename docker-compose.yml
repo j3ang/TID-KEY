@@ -9,10 +9,10 @@ services:
        - /usr/src/app/node_modules
       ports:
        - "80:3000"
-      links:
-       - mongo
       depends_on: 
        - mongo
+      networks:
+       - tid-mongo
     mongo:
       container_name: TID-DB
       image: mongo:latest
@@ -20,8 +20,11 @@ services:
        - tid-mongodbdata:/data/db
       ports: 
        - "27017:27017"
-
+      networks:
+       - tid-mongo
 
 volumes:
     tid-mongodbdata:
 
+networks:
+    tid-mongo:
