@@ -1,0 +1,163 @@
+@import "site/variables-light";
+
+#container {
+	display: flex;
+	justify-content: space-between;
+
+	:nth-child(1) {
+		order: 1
+	}
+
+	:nth-child(2) {
+		order: 2
+	}
+
+	:nth-child(3) {
+		order: 3
+	}
+
+	:nth-child(4) {
+		order: 4
+	}
+
+	li {
+		list-style: circle;
+	}
+
+	#experience {
+		padding-top: 2.25rem;
+	}
+
+	@include max-desktop {
+		flex-direction: row;
+		flex-wrap: wrap;
+
+		:nth-child(1) {
+			order: 1
+		}
+
+		:nth-child(2) {
+			order: 2
+		}
+
+		:nth-child(3) {
+			order: 4
+		}
+
+		:nth-child(4) {
+			order: 3
+		}
+
+		section#mission,
+		section#experience,
+		section#team {
+			width: calc(100%/2 - 2.25rem);
+		}
+
+		.about-content {
+			font-size: 1.4rem;
+			line-height: 2;
+			margin: 3.25rem 0 3.25rem 0;
+
+			strong {
+				color: gray;
+			}
+		}
+	}
+
+	@include laptop {
+		flex-direction: row;
+		flex-wrap: wrap;
+
+		:nth-child(1) {
+			order: 1
+		}
+
+		:nth-child(2) {
+			order: 2
+		}
+
+		:nth-child(3) {
+			order: 4
+		}
+
+		:nth-child(4) {
+			order: 3
+		}
+
+		section#mission,
+		section#experience,
+		section#team {
+			width: calc(100%/2 - 1.25rem);
+		}
+
+		.about-content {
+			font-size: 1.5rem;
+			line-height: 1.5;
+			margin: 1.25rem 0 1.25rem 0;
+
+			strong {
+				color: gray;
+			}
+		}
+	}
+
+	;
+
+	@media(max-width: 780px) {
+		flex-direction: column;
+
+		:nth-child(1) {
+			order: 1
+		}
+
+		:nth-child(2) {
+			order: 2
+		}
+
+		:nth-child(3) {
+			order: 3
+		}
+
+		:nth-child(4) {
+			order: 4
+		}
+
+		section#mission,
+		section#experience,
+		section#team {
+			width: 100%;
+		}
+
+		section#experience {
+			padding-top: 0;
+		}
+
+		.about-content {
+			font-size: 1.2rem;
+			margin: 1.25rem 0 1.25rem 0;
+
+			strong {
+				color: gray;
+			}
+		}
+	}
+
+	;
+
+	@include mobile-s {
+		flex-direction: column;
+
+		.about-content {
+			font-size: 1rem;
+			line-height: 1.5;
+			margin: 1.25rem 0 1.25rem 0;
+
+			strong {
+				color: gray;
+			}
+		}
+	}
+
+	;
+}

@@ -1,0 +1,11 @@
+@import "site/variables-light";
+
+.category-title {
+	text-align: center;
+	margin-top: calc(1rem + 1vw);
+	margin-bottom: calc((1rem + 10vw) - 8vw);
+}
+
+.category-brief {
+	font-size: 1.5rem;
+}

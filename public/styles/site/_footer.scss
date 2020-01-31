@@ -1,0 +1,184 @@
+@import "site/variables";
+
+footer {
+	background: $dark;
+	color: #aaa;
+	height: 100%;
+
+	.companyOverview {
+		font-size: 1rem !important;
+	}
+
+	.top {
+		border-top: 1px dotted #777;
+		border-bottom: 1px dotted #777;
+
+		.footer-social {
+
+			.fa-instagram:hover,
+			.fa-instagram:focus {
+				color: #c32aa3;
+			}
+
+			.fa-twitter:hover,
+			.fa-twitter:focus {
+				color: $twiter-color;
+			}
+
+			.fa-youtube:hover,
+			.fa-youtube:focus {
+				color: $youtube-color;
+			}
+
+			.fa-facebook-f:hover,
+			.fa-facebook-f:focus {
+				color: $facebook-color;
+			}
+
+			a {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				width: 60px;
+				height: 60px;
+				margin-right: 6px;
+				-moz-border-radius: 50%;
+				-webkit-border-radius: 50%;
+				border-radius: 50%;
+				font-size: 32px;
+				color: $light;
+				line-height: 40px;
+				text-align: center;
+
+				&:hover,
+				// &:focus {
+				//    background: $light;
+				// }
+				i {
+					vertical-align: middle;
+				}
+			}
+		}
+
+		.contact-info {
+			padding-top: 25px;
+			border-top: 1px dotted #777;
+
+			a {
+				color: $link-color;
+			}
+
+			li {
+				font-size: 1.15rem;
+				list-style: none;
+				margin-bottom: 0.5rem;
+				padding-left: 0;
+			}
+
+
+			#cell:before {
+				content: "\f095";
+				font-family: "Font Awesome 5 Free";
+				font-weight: 900;
+				padding-right: 0.5rem;
+				border: solid 2px;
+				border-radius: 50%;
+				padding: 0.5rem;
+				margin-right: 1rem;
+			}
+
+			#fax:before {
+				content: "\f1ac";
+				font-family: "Font Awesome 5 Free";
+				font-weight: 900;
+				padding-right: 0.5rem;
+				border: solid 2px;
+				border-radius: 50%;
+				padding: 0.5rem;
+				margin-right: 1rem;
+			}
+
+			#address:before {
+				content: "\f3c5";
+				font-family: "Font Awesome 5 Free";
+				font-weight: 900;
+				padding-right: 0.5rem;
+				border: solid 2px;
+				border-radius: 50%;
+				padding: 0.5rem;
+				margin-right: 1rem;
+			}
+
+			#email:before {
+				content: "\f1fa";
+				font-family: "Font Awesome 5 Free";
+				font-weight: 900;
+				padding-right: 0.5rem;
+				border: solid 2px;
+				border-radius: 50%;
+				padding: 0.5rem;
+				margin-right: 1rem;
+			}
+
+
+		}
+
+		#quoteBtn {
+
+			border-color: $light;
+
+			&:hover {
+				background: $light;
+
+				p {
+					color: $dark !important;
+				}
+			}
+		}
+
+
+		.mailing-form {
+			form {
+				display: flex;
+				flex-direction: row;
+				justify-content: center;
+				align-items: center;
+
+				.form-group {
+					margin-bottom: 0 !important;
+					width: 100%;
+
+					input {
+						border-right: none;
+					}
+				}
+			}
+		}
+	}
+
+	.bottom {
+		.section-logo {
+			width: 16vw;
+			max-width: 160px;
+			padding-left: 0.7rem;
+			fill: $light;
+
+			tspan {
+				fill: $light;
+			}
+		}
+
+		.signup-text {
+			font-size: 1.5rem !important
+		}
+
+		form {
+			max-width: 450px;
+		}
+	}
+
+	.copyright {
+		border-top: 1px dotted gray;
+	}
+
+}
