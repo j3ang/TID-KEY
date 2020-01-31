@@ -8,7 +8,6 @@ COPY package-lock.json .
 RUN npm install
 
 COPY . .
-ADD . /usr/src/app
 
 EXPOSE 3000
 
