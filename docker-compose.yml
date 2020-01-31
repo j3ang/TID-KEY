@@ -2,7 +2,7 @@ version: '3'
 services:
     web:
       container_name: TID-APP
-      image: j3ang/tid:v1.0.3
+      image: twinimage/tid-key:v1.0.0
       build: .
       volumes:
        - .:/usr/src/app
