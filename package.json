@@ -10,7 +10,6 @@
     "dotenv": "8.2.0",
     "greenlock-express": "^4.0.3",
     "html2pug": "^4.0.0",
-    "keystone": "^4.2.1",
     "keystone-email": "^1.1.0",
     "keystone-forgotten-password": "^1.4.0",
     "lodash": "^4.17.15",
