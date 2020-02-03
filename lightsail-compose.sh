@@ -15,4 +15,10 @@ chmod +x /usr/local/bin/docker-compose
 curl -o /etc/systemd/system/docker-compose-app.service https://raw.githubusercontent.com/j3ang/TID-KEY/master/docker-compose-app.service
 systemctl enable docker-compose-app
 
+# setup working directory
+workdir=/usr/src/app
+mkdir $workdir | cd $workdir
+
+# clone latest code 
+git clone https://github.com/j3ang/TID-KEY.git | cd TID-KEY
 docker pull twinimage/tid-key:v1.0.0
