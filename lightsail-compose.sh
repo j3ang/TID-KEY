@@ -16,7 +16,7 @@ curl -o /etc/systemd/system/docker-compose-app.service https://raw.githubusercon
 systemctl enable docker-compose-app
 
 # setup working directory
-cd $workdir
+cd /usr/src/app
 
 # clone latest code 
 git clone https://github.com/j3ang/TID-KEY.git ; cd TID-KEY
