@@ -11,12 +11,14 @@
 
 }
 
+
 #carousel-0 {
 	img {
 		width: 100%;
-		height: calc(78vw/2 + 2rem);
-		object-fit: cover;
+		height: calc(100vw/2 - 2.5rem) !important;
+		object-fit: contain;
 	}
+
 }
 
 // category 

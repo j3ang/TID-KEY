@@ -34,7 +34,11 @@ keystone.init({
 	'auth': true,
 	'user model': 'User',
 	'port': process.env.PORT || 3000,
-	'ssl': true
+	'ssl port': process.env.SSL_PORT || 3001,
+	'ssl public port': 443, // different from `ssl port` if using iptables/ port forwarding
+	// 'ssl': 'force', // force redirects to https port 
+	// 'ssl cert': letsencryptPath + 'cert.pem', // path to generated certificate (generated at `$HOME/letsencrypt/etc` by default)
+	// 'ssl key': letsencryptPath + 'privkey.pem', // path to generated private key (same default as ssl cert)
 });
 
 
@@ -87,5 +91,16 @@ keystone.set('nav', {
 	users: 'users',
 });
 
+keystone.start({
+    onHttpServerCreated: function() {
+      var server = keystone.httpServer;
+      console.log("keystone is running!");
+      console.log(server);
+      
+    }
+  });
+
 // Start Keystone to connect to your database and initialise the web server
-keystone.start();
+module.exports = keystone;
+
+

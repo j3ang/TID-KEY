@@ -303,7 +303,6 @@ h2 {
 	color: $title_color !important;
 	font-size: 2.25em !important;
 	font-weight: bold !important;
-	line-height: 1.333333333 !important;
 	margin-bottom: 0.666666666em !important;
 
 	@include bp(600,
@@ -363,7 +362,6 @@ li {
 img.project-img {
 	display: block;
 	width: 100%;
-	height: 100%;
 }
 
 section {
@@ -396,7 +394,8 @@ section {
 	float: left;
 	position: relative;
 	overflow: hidden;
-	width: calc(100%/2 - 3vw);
+	width: calc(100%/2 - 3vw) !important;
+	height: calc(100vw/2 - 20vw) !important;
 	margin-bottom: 6.5vw;
 
 	@include tab-s {
@@ -404,7 +403,10 @@ section {
 	}
 
 	.img {
-		max-width: 100%;
+	    max-width: 100%;
+		object-fit: cover !important;
+		width: 100% !important;
+		height: 100%;
 		display: block;
 		position: relative;
 	}
