@@ -21,3 +21,4 @@ cd $workdir
 # clone latest code 
 git clone https://github.com/j3ang/TID-KEY.git ; cd TID-KEY
 docker pull twinimage/tid-key:v1.0.0
+docker-compose up
