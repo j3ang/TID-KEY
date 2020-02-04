@@ -12,7 +12,7 @@ chmod +x /usr/local/bin/docker-compose
 
 # copy in systemd unit file and register it so our compose file runs 
 # on system restart
-curl -o /etc/systemd/system/docker-compose-app.service https://raw.githubusercontent.com/j3ang/TID-KEY/master/docker-compose-app.service
+curl -o /etc/systemd/system/docker-compose-app.service https://raw.githubusercontent.com/j3ang/TID-KEY/master/_lightsail/docker-compose-app.service
 systemctl enable docker-compose-app
 
 # setup working directory
