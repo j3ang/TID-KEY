@@ -21,5 +21,6 @@ cd /usr/src/app
 # clone latest code 
 git clone https://github.com/j3ang/TID-KEY.git ; cd TID-KEY
 mv ../.env .
+cd _docker/
 docker pull twinimage/tid-key:v1.0.0
-docker-compose up
+docker-compose -f docker-compose.$env.yml up
