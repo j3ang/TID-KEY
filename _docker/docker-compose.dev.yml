@@ -1,0 +1,32 @@
+version: '3'
+services:
+    web:
+      container_name: TID-APP
+      restart: always
+      image: twinimage/tid-key:v1.0.0
+      build: ../
+      volumes:
+       - ../:/usr/src/app
+       - /usr/src/app/node_modules
+       - ./CloudinaryImagesType.js:/usr/src/app/node_modules/keystone/fields/types/cloudinaryimages/CloudinaryImagesType.js
+      ports:
+       - "3000:3000"
+      networks:
+       - tid-mongo
+       
+    mongo:
+      container_name: TID-DB
+      restart: always
+      image: mongo:latest
+      volumes:
+       - tid-mongodbdata:/data/db
+      ports: 
+       - "27017:27017"
+      networks:
+       - tid-mongo
+
+volumes:
+    tid-mongodbdata:
+
+networks:
+    tid-mongo:

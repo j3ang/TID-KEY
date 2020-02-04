@@ -2,15 +2,15 @@ version: '3'
 services:
     web:
       container_name: TID-APP
+      restart: always
       image: twinimage/tid-key:v1.0.0
-      build: .
+      build: ../
       volumes:
-       - .:/usr/src/app
+       - ../:/usr/src/app
        - /usr/src/app/node_modules
        - ./CloudinaryImagesType.js:/usr/src/app/node_modules/keystone/fields/types/cloudinaryimages/CloudinaryImagesType.js
-
       ports:
-       - "80:3000"
+       - "80:8080"
       networks:
        - tid-mongo
        

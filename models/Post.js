@@ -77,7 +77,7 @@ Post.add({
 	state: {
 		type: Types.Select,
 		options: 'draft, published, archived',
-		default: 'draft',
+		default: 'published',
 		index: true
 	},
 });
