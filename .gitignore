@@ -32,7 +32,7 @@ node_modules
 .DS_Store
 
 # Ignore lightsail launch script
-_lightsail/lunch-script.sh
+_lightsail/launch-script.sh
 
 # Ignore vagrant files
 _vagrant/.vagrant
