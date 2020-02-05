@@ -39,3 +39,6 @@ _vagrant/.vagrant
 
 # Ignore backed-up db
 mongo-data
+
+# Ignore images folder
+__tid-projects
