@@ -42,3 +42,6 @@ mongo-data
 
 # Ignore images folder
 __tid-projects
+
+# ignore vagrant boxes
+*.box
