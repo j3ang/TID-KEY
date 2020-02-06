@@ -78,12 +78,11 @@ block content
             !=data.post.content.brief
             !=data.post.content.extended
 
-
-
       section#images.newline
          !=data.post.content.project_img
          each image in data.post.images.image
-            img.project-img(src=image.url)
+            a(href=image.url data-fancybox="gallery" )
+               img.project-img(src=image.url)
             if image.desc
                p.project-img
                   | Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sapiente, reiciendis architecto. 
@@ -92,7 +91,7 @@ block content
 
       section#related.newline
          .row
-            h2.text-center.text-capitalize= 'you might also enjoy'
+            h2.text-center.text-capitalize.w-100= 'More Projects'
          #portfolios
             each post in data.posts.results
                if post.title != data.post.title

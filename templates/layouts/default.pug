@@ -17,7 +17,8 @@ html
 		link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css', integrity='sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm', crossorigin='anonymous')
 		link(rel='stylesheet', href='https://use.fontawesome.com/releases/v5.4.1/css/all.css', integrity='sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz', crossorigin='anonymous')
 		link(rel='stylesheet', href='https://use.fontawesome.com/releases/v5.4.1/css/brands.css', integrity='sha384-Px1uYmw7+bCkOsNAiAV5nxGKJ0Ixn5nChyW8lCK1Li1ic9nbO5pC/iXaq27X5ENt', crossorigin='anonymous')
-  		
+		link(rel="stylesheet", href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css")
+
 		//- This file provides the default styling for the KeystoneJS Content Editor
 		if user && user.canAccessKeystone
 			link(href="/keystone/styles/content/editor.min.css", rel="stylesheet")
@@ -201,9 +202,12 @@ html
 
 		//- Include template-specific javascript files by extending the js block
 		block js
-			script(src='/js/jquery.sticky.js')
 			script(src='https://unpkg.com/infinite-scroll@3/dist/infinite-scroll.pkgd.min.js')
+			script(src='https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js')
+			script(src='/js/jquery.sticky.js')
 			script(src='/js/sticky-footer.min.js')
 			script(src='/js/load.js')
 			script(src='/js/responsee.js')
+
+			
 
