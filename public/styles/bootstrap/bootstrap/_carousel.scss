@@ -11,8 +11,18 @@
     .carousel-inner .item img {
         object-fit: contain;
         width: 100%;
+        height: calc(100vw/2 - 5rem);
+        /* WebKit-based browsers will ignore this. */
         height: -webkit-fill-available;
+        /* Mozilla-based browsers will ignore this. */
         margin-top: 0 !important;
+        @include desktop {
+            height: calc(100vw/2 - 5rem);
+            max-height: 750px;
+        }
+        @include laptop {
+            height: calc(100vw/2);
+        }
     }
     @include desktop {
         height: calc(100vw/2 - 5rem);
