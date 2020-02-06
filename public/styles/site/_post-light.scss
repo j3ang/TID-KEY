@@ -1,18 +1,27 @@
 @import "site/variables";
-#cover,
 #details,
-#feature-img,
+#feature,
+.carousel,
 .content-container,
 .portfolios-item,
 .related-title {
     margin-bottom: 6.5vw;
 }
 
-#feature-img {
-    width: 100%;
-    object-fit: contain;
+.carousel {
+    overflow: hidden;
+    height: calc(100vw/2 - 5rem);
     background: white;
-    height: calc(100vw/2 - 3rem);
+    #feature-img {
+        object-fit: contain;
+        width: 100%;
+        height: -webkit-fill-available;
+        margin-top: 0 !important;
+    }
+    @include desktop {
+        height: calc(100vw/2 - 5rem);
+        max-height: 850px;
+    }
     @include desktop {
         height: calc(100vw/2 - 5rem);
     }
@@ -28,13 +37,6 @@
     color: $light;
     font-size: calc((0.9rem + .4vw) * 1.253);
     line-height: 1.25em;
-}
-
-#feature {
-    margin-bottom: 6.5vw;
-    @include max-desktop {
-        margin-bottom: 0;
-    }
 }
 
 #details {
