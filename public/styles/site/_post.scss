@@ -20,7 +20,7 @@
     }
     @include desktop {
         height: calc(100vw/2 - 5rem);
-        max-height: 850px;
+        max-height: 750px;
     }
     @include laptop {
         height: calc(100vw/2);
