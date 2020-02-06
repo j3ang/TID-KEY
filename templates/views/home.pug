@@ -29,7 +29,7 @@ mixin carousel(id,items)
 				else
 					.item
 						a(href='/portfolio/post/' + item.slug)
-							img.d-block(src=item.images.cover.url)
+							img(src=item.images.cover.url)
 		//- Indicators
 		ol.carousel-indicators
 			each item,index in items
