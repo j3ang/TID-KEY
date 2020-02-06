@@ -25,24 +25,27 @@ block content
             h1.title= data.post.title
          .meta-container
             .meta-block
-               span.meta-title published on
+               span.meta-title Published On
                p.meta-value= data.post._.publishedDate.format('YYYY/MM/DD')
             
-            .meta-block
-               if data.post.categories != ''
-                  span.meta-title category
+            if data.post.categories != ''
+               .meta-block
+                  span.meta-title Category
                   .meta-value
                      each cat in data.post.categories
                         span: p.catname= cat.name
 
-            .meta-block
-               span.meta-title tags
-               .meta-value
-                  span
-                     a(href='/')= 'some tags'
-            .meta-block
-               span.meta-title client
-               p.meta-value= 'some company'
+            if data.post.tags
+               .meta-block
+                  span.meta-title Tags
+                  .meta-value
+                     span
+
+            if data.post.client    
+               .meta-block
+                  span.meta-title Client
+                  a(href='data.post.client.url').meta-value:  data.post.client.name 
+                  
          .content-container
             !=data.post.content.brief
             !=data.post.content.extended
