@@ -8,25 +8,21 @@ $black_96: rgba(20, 20, 20, 0.96);
 // $dark: rgba(20, 20, 20, 1);
 $dark: rgba(20, 20, 20, 1);
 $carousel-indicator:#888 !important;
-
 $header_black:$dark;
 $paragraph_color: $light;
 $title_color: $light;
 $list-color: $light;
 $link-color: $light;
-
 $color_storm_dust_80_approx: rgba(99, 99, 99, 0.8);
 $youtube-color: #ff0000;
 $twiter-color: #1DA1F2;
 $facebook-color: #3B5998;
-
 // Menu Icon
 $menu-icon-width: 2.5rem;
 $menu-icon-height: $menu-icon-width;
 $menu-icon-color: $light;
 $menu-icon-color--active: #D00251;
 $logo-center-stroke-color:$light;
-
 // fonts
 // $font_0: Pathway Gothic One;
 $font_1: sans-serif;
@@ -46,63 +42,62 @@ $tab-s: 600px;
 $mobile-L: 500px;
 $mobile-M: 375px;
 $mobile-s: 320px;
-
 @mixin max-desktop {
-	@media screen and (max-width: #{$max-desktop}) {
-		@content;
-	}
+    @media screen and (max-width: #{$max-desktop}) {
+        @content;
+    }
 }
 
 @mixin desktop {
-	@media screen and (max-width: #{$desktop}) {
-		@content;
-	}
+    @media screen and (max-width: #{$desktop}) {
+        @content;
+    }
 }
 
 @mixin Laptop-L {
-	@media screen and (max-width: #{$Laptop-L}) {
-		@content;
-	}
+    @media screen and (max-width: #{$Laptop-L}) {
+        @content;
+    }
 }
 
 @mixin laptop {
-	@media screen and (max-width: #{$laptop}) {
-		@content;
-	}
+    @media screen and (max-width: #{$laptop}) {
+        @content;
+    }
 }
 
 @mixin togglebar-break {
-	@media screen and (max-width: #{$togglebar-break}) {
-		@content;
-	}
+    @media screen and (max-width: #{$togglebar-break}) {
+        @content;
+    }
 }
 
 @mixin tablet {
-	@media screen and (max-width: #{$tablet}) {
-		@content;
-	}
+    @media screen and (max-width: #{$tablet}) {
+        @content;
+    }
 }
 
 @mixin tab-s {
-	@media screen and (max-width: #{$tab-s}) {
-		@content;
-	}
+    @media screen and (max-width: #{$tab-s}) {
+        @content;
+    }
 }
 
 @mixin mobile-L {
-	@media screen and (max-width: #{$mobile-L}) {
-		@content;
-	}
+    @media screen and (max-width: #{$mobile-L}) {
+        @content;
+    }
 }
 
 @mixin mobile-M {
-	@media screen and (max-width: #{$mobile-M}) {
-		@content;
-	}
+    @media screen and (max-width: #{$mobile-M}) {
+        @content;
+    }
 }
 
 @mixin mobile-s {
-	@media screen and (max-width: #{$mobile-s}) {
-		@content;
-	}
+    @media screen and (max-width: #{$mobile-s}) {
+        @content;
+    }
 }

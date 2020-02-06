@@ -21,129 +21,120 @@
 @import "site/portfolio";
 @import "site/index";
 @import "site/last";
-
 ///////////////////////////////
 // mixins ////////////////////
 /////////////////////////////
 //em conversion function
 @function em($px) {
-	@return #{$px/16}em;
+    @return #{$px/16}em;
 }
 
 //media query mixin
 @mixin bp($bp, $min-max: min-width) {
-	@media(#{$min-max}: #{$bp/16}em) {
-		@content;
-	}
+    @media(#{$min-max}: #{$bp/16}em) {
+        @content;
+    }
 }
 
 //mixin for responsive type
 @mixin flexType($vw, $min, $max) {
-	$min-size: $min / ($vw / 100);
-	$max-size: $max / ($vw / 100); //provide the minimum font-size
-	font-size: em($min);
-
-	@include bp($min-size) {
-		//setting the responsive text
-		font-size: #{$vw}vw;
-	}
-
-	@include bp($max-size) {
-		//change out for max number
-		font-size: em($max);
-	}
+    $min-size: $min / ($vw / 100);
+    $max-size: $max / ($vw / 100); //provide the minimum font-size
+    font-size: em($min);
+    @include bp($min-size) {
+        //setting the responsive text
+        font-size: #{$vw}vw;
+    }
+    @include bp($max-size) {
+        //change out for max number
+        font-size: em($max);
+    }
 }
 
 //grid mixin
 @mixin grids($column-num, $vert: top) {
-	$col-width: 65px;
-	$gutter-width: 20px;
-	$columns: 12; // Set container width
-	$width: ($col-width * $columns) + ($gutter-width * ($columns - 1)); // First, calculate grid size in pixels
-	$grid: ($col-width * $column-num) + ($gutter-width * ($column-num - 1)); // Then, calculate the responsive grid 
-	$grid: ($grid / $width) * 100%;
-	vertical-align: $vert;
-	width: $grid;
-
-	&+& {
-		margin-left: 2%;
-	}
+    $col-width: 65px;
+    $gutter-width: 20px;
+    $columns: 12; // Set container width
+    $width: ($col-width * $columns) + ($gutter-width * ($columns - 1)); // First, calculate grid size in pixels
+    $grid: ($col-width * $column-num) + ($gutter-width * ($column-num - 1)); // Then, calculate the responsive grid 
+    $grid: ($grid / $width) * 100%;
+    vertical-align: $vert;
+    width: $grid;
+    &+& {
+        margin-left: 2%;
+    }
 }
 
 //vender prefix transitions
 @mixin transition ($name: all, $timing: 0.65s, $easing:$bouncy, $delay: null) {
-	-webkit-transition: $name $timing $easing $delay;
-	-moz-transition: $name $timing $easing $delay;
-	-ms-transition: $name $timing $easing $delay;
-	-o-transition: $name $timing $easing $delay;
-	transition: $name $timing $easing $delay;
+    -webkit-transition: $name $timing $easing $delay;
+    -moz-transition: $name $timing $easing $delay;
+    -ms-transition: $name $timing $easing $delay;
+    -o-transition: $name $timing $easing $delay;
+    transition: $name $timing $easing $delay;
 }
 
 //vender prefix translate
 @mixin trans($cord, $cord2) {
-	-webkit-transform: translate($cord, $cord2);
-	-ms-transform: translate($cord, $cord2);
-	transform: translate($cord, $cord2);
+    -webkit-transform: translate($cord, $cord2);
+    -ms-transform: translate($cord, $cord2);
+    transform: translate($cord, $cord2);
 }
 
 //micro clearfix
 @mixin cf {
-
-	&:after,
-	&:before {
-		content: "";
-		display: table;
-		clear: both;
-	}
+    &:after,
+    &:before {
+        content: "";
+        display: table;
+        clear: both;
+    }
 }
 
 //full screen a section
 @mixin full-screen {
-	display: block;
-	min-height: 100%;
-	min-width: 100%;
+    display: block;
+    min-height: 100%;
+    min-width: 100%;
 }
 
 //overlay background
 @mixin overlay {
-	bottom: 0;
-	left: 0;
-	position: fixed;
-	right: 0;
-	top: 0;
-	z-index: $zOverlay;
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: $zOverlay;
 }
 
 // =============================================================================
 // String Replace
 // =============================================================================
 @function str-replace($string, $search, $replace: "") {
-	$index: str-index($string, $search);
-
-	@if $index {
-		@return str-slice($string, 1, $index - 1)+$replace+str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
-	}
-
-	@return $string;
+    $index: str-index($string, $search);
+    @if $index {
+        @return str-slice($string, 1, $index - 1)+$replace+str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+    }
+    @return $string;
 }
 
 @mixin font-face($name, $path, $weight: null, $style: null, $exts: eot woff2 woff ttf svg) {
-	$src: null;
-	$extmods: (eot: "?", svg: "#"+ str-replace($name, " ", "_"));
-	$formats: (otf: "opentype", ttf: "truetype");
-
-	@each $ext in $exts {
-		$extmod: if(map-has-key($extmods, $ext), $ext + map-get($extmods, $ext), $ext);
-		$format: if(map-has-key($formats, $ext), map-get($formats, $ext), $ext);
-		$src: append($src, url(quote($path + "." + $extmod)) format(quote($format)), comma);
-	}
-
-	@font-face {
-		font-family: quote($name);
-		font-style: $style;
-		font-weight: $weight;
-		src: $src;
-	}
+    $src: null;
+    $extmods: (eot: "?", svg: "#"+ str-replace($name, " ", "_"));
+    $formats: (otf: "opentype", ttf: "truetype");
+    @each $ext in $exts {
+        $extmod: if(map-has-key($extmods, $ext), $ext + map-get($extmods, $ext), $ext);
+        $format: if(map-has-key($formats, $ext), map-get($formats, $ext), $ext);
+        $src: append($src, url(quote($path + "." + $extmod)) format(quote($format)), comma);
+    }
+    @font-face {
+        font-family: quote($name);
+        font-style: $style;
+        font-weight: $weight;
+        src: $src;
+    }
 }
 
 ///////////////////////////////
@@ -160,20 +151,19 @@ $thin: 300;
 $normal: 400;
 $bold: 800;
 @import url('https://fonts.googleapis.com/css?family=Fredericka+the+Great|Oswald:300');
-
 @font-face {
-	font-family: "Apex";
-	src: url("../fonts/Apex/Apex_New_Regular.otf") format("truetype")
+    font-family: "Apex";
+    src: url("../fonts/Apex/Apex_New_Regular.otf") format("truetype")
 }
 
 @font-face {
-	font-family: "Avenir";
-	src: url("../fonts/Avenir/AvenirNextLTPro-BoldCn.otf") format("truetype"), url("../fonts/Avenir/AvenirNextLTPro-Cn.otf") format("truetype"), url("../fonts/Avenir/AvenirNextLTPro-DemiCn.otf") format("truetype") url("../fonts/Avenir/AvenirNextLTPro-DemiIt.otf") format("truetype") url("../fonts/Avenir/AvenirNextLTPro-It.otf") format("truetype") url("../fonts/Avenir/AvenirNextLTPro-MediumCn.otf") format("truetype")
+    font-family: "Avenir";
+    src: url("../fonts/Avenir/AvenirNextLTPro-BoldCn.otf") format("truetype"), url("../fonts/Avenir/AvenirNextLTPro-Cn.otf") format("truetype"), url("../fonts/Avenir/AvenirNextLTPro-DemiCn.otf") format("truetype") url("../fonts/Avenir/AvenirNextLTPro-DemiIt.otf") format("truetype") url("../fonts/Avenir/AvenirNextLTPro-It.otf") format("truetype") url("../fonts/Avenir/AvenirNextLTPro-MediumCn.otf") format("truetype")
 }
 
 @font-face {
-	font-family: "Vegur";
-	src: url("../fonts/Vegur-Light.ttf") format("truetype"), url("../fonts/Vegur-Regular.ttf") format("truetype"), url("../fonts/Vegur-Bold.ttf") format("truetype"),
+    font-family: "Vegur";
+    src: url("../fonts/Vegur-Light.ttf") format("truetype"), url("../fonts/Vegur-Regular.ttf") format("truetype"), url("../fonts/Vegur-Bold.ttf") format("truetype"),
 }
 
 ///////////////////////////////
@@ -188,252 +178,237 @@ $bouncy: cubic-bezier(.84,
 -0.18,
 .31,
 1.26);
-
 :root {
-	@include flexType(2,
-	13,
-	18)
+    @include flexType(2,
+    13,
+    18)
 }
 
 .sticky-wrapper {
-	height: 0 !important;
+    height: 0 !important;
 }
-
-
-
 
 button,
 .mailing-form .form-group input {
-	background: transparent !important;
-	border: 0.15rem solid $light;
-	text-align: center;
-	vertical-align: center;
-	color: $light;
-	padding: 0.5rem;
-	margin-bottom: 0;
+    background: transparent !important;
+    border: 0.15rem solid $light;
+    text-align: center;
+    vertical-align: center;
+    color: $light;
+    padding: 0.5rem;
+    margin-bottom: 0;
 }
 
 .mailing-form .form-group input {
-	width: 100%;
+    width: 100%;
 }
 
 #subscribeBtn,
 button {
-
-	&:hover,
-	&:active,
-	&:focus,
-	&:active:focus,
-	&.active:focus {
-		background: $light !important;
-		content: '\f1d8';
-		color: $dark;
-		font-weight: 800;
-	}
+    &:hover,
+    &:active,
+    &:focus,
+    &:active:focus,
+    &.active:focus {
+        background: $light !important;
+        content: '\f1d8';
+        color: $dark;
+        font-weight: 800;
+    }
 }
 
 a#subscribeBtn {
-	border: solid 1px $light;
-	border-radius: 0;
-	color: $light;
-	padding: 1rem;
+    border: solid 1px $light;
+    border-radius: 0;
+    color: $light;
+    padding: 1rem;
 }
 
 *:f ocus {
-	outline: none;
+    outline: none;
 }
 
 .btn-outline {
-	background-color: transparent;
-	color: $paragraph_color;
-	padding: 1rem 3rem;
-
-	&:hover {
-		color: $dark;
-		background-color: $paragraph_color;
-	}
-
-	&:focus {
-		outline: 0;
-	}
+    background-color: transparent;
+    color: $paragraph_color;
+    padding: 1rem 3rem;
+    &:hover {
+        color: $dark;
+        background-color: $paragraph_color;
+    }
+    &:focus {
+        outline: 0;
+    }
 }
 
 .ks-editable-btn {
-	z-index: 1;
-	margin: 1rem;
+    z-index: 1;
+    margin: 1rem;
 }
 
 body {
-	color: #333;
-	font-family: $primary_font, 'Open Sans', sans-serif !important;
-	font-weight: $normal;
-	line-height: 1.5;
-	background: $dark !important;
-	text-rendering: optimizeLegibility !important;
-	display: flex;
-	flex-direction: column;
+    color: #333;
+    font-family: $primary_font, 'Open Sans', sans-serif !important;
+    font-weight: $normal;
+    line-height: 1.5;
+    background: $dark !important;
+    text-rendering: optimizeLegibility !important;
+    display: flex;
+    flex-direction: column;
 }
 
 h1,
 h2,
 h3,
 strong {
-	//background: rgba(#000, .2);
-	font-weight: $bold;
-	margin: 0;
+    //background: rgba(#000, .2);
+    font-weight: $bold;
+    margin: 0;
 }
 
 h1 {
-	font-size: 3em;
-	line-height: 1;
-	margin-bottom: 0.5em;
-	font-family: $title_font;
-	color: $title_color !important;
-	text-transform: capitalize !important;
-
-	@include bp(600,
-	max-width) {
-		font-size: 1.5em;
-		margin-bottom: .9em;
-	}
+    font-size: 3em;
+    line-height: 1;
+    margin-bottom: 0.5em;
+    font-family: $title_font;
+    color: $title_color !important;
+    text-transform: capitalize !important;
+    @include bp(600,
+    max-width) {
+        font-size: 1.5em;
+        margin-bottom: .9em;
+    }
 }
 
 h2 {
-	font-family: $title_font;
-	color: $title_color !important;
-	font-size: 2.25em !important;
-	font-weight: bold !important;
-	margin-bottom: 0.666666666em !important;
-
-	@include bp(600,
-	max-width) {
-		font-size: 1.3125em !important;
-		line-height: 1.142857142 !important;
-		margin-bottom: 1.142857142em !important;
-	}
+    font-family: $title_font;
+    color: $title_color !important;
+    font-size: 2.25em !important;
+    font-weight: bold !important;
+    margin-bottom: 0.666666666em !important;
+    @include bp(600,
+    max-width) {
+        font-size: 1.3125em !important;
+        line-height: 1.142857142 !important;
+        margin-bottom: 1.142857142em !important;
+    }
 }
 
 .title {
-	text-transform: capitalize;
+    text-transform: capitalize;
 }
 
 h3 {
-	font-family: $title_font;
-	color: $title_color !important;
-	text-transform: capitalize !important;
-	font-size: 1.5em;
-	line-height: 1;
-	margin-bottom: .9em;
-
-	@include bp(600,
-	max-width) {
-		font-size: 1.125em;
-		line-height: 1.333333333;
-		margin-bottom: 1.333333333em;
-	}
+    font-family: $title_font;
+    color: $title_color !important;
+    text-transform: capitalize !important;
+    font-size: 1.5em;
+    line-height: 1;
+    margin-bottom: .9em;
+    @include bp(600,
+    max-width) {
+        font-size: 1.125em;
+        line-height: 1.333333333;
+        margin-bottom: 1.333333333em;
+    }
 }
 
 .title {
-	text-transform: capitalize;
-	color: $title_color;
+    text-transform: capitalize;
+    color: $title_color;
 }
 
 p {
-	font-size: 1em !important;
-	font-family: $paragraph_font !important;
-	color: $paragraph_color !important;
-
-	@include bp(600,
-	max-width) {
-		font-size: 1em !important;
-		line-height: 1.5em !important;
-		margin-bottom: 1.45em !important;
-	}
+    font-size: 1em !important;
+    font-family: $paragraph_font !important;
+    color: $paragraph_color !important;
+    @include bp(600,
+    max-width) {
+        font-size: 1em !important;
+        line-height: 1.5em !important;
+        margin-bottom: 1.45em !important;
+    }
 }
 
 li {
-	color: $list-color;
+    color: $list-color;
 }
 
 .mat-drawer-content {
-	background: $dark;
+    background: $dark;
 }
 
 img.project-img {
-	display: block;
-	width: 100%;
+    display: block;
+    width: 100%;
 }
 
 section {
-	background: $dark;
+    background: $dark;
 }
 
 .newline {
-	width: 88.6666%;
-	display: block;
-	margin: 0 auto;
-	padding: 0 0.625rem;
+    width: 88.6666%;
+    display: block;
+    margin: 0 auto;
+    padding: 0 0.625rem;
 }
 
 #portfolios {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
-	align-items: center;
-	margin-top: calc((1rem + 10vw) - 5vw);
-	// margin-bottom: calc((1rem + 10vw) - 5vw);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: calc((1rem + 10vw) - 5vw);
+    // margin-bottom: calc((1rem + 10vw) - 5vw);
 }
 
 .portfolios-item {
-	margin: 0;
-	position: relative;
-	background: transparent;
-	background-size: cover;
-	background-repeat: no-repeat;
-	overflow: hidden;
-	float: left;
-	position: relative;
-	overflow: hidden;
-	width: calc(100%/2 - 3vw) !important;
-	height: calc(100vw/2 - 20vw) !important;
-	margin-bottom: 6.5vw;
-
-	@include tab-s {
-		width: 100%;
-	}
-
-	.img {
-	    max-width: 100%;
-		object-fit: cover !important;
-		width: 100% !important;
-		height: 100%;
-		display: block;
-		position: relative;
-	}
+    margin: 0;
+    position: relative;
+    background: transparent;
+    background-size: cover;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    float: left;
+    position: relative;
+    overflow: hidden;
+    width: calc(100%/2 - 3vw) !important;
+    height: calc(100vw/2 - 20vw) !important;
+    margin-bottom: 6.5vw;
+    @include tab-s {
+        width: 100%;
+    }
+    .img {
+        max-width: 100%;
+        object-fit: cover !important;
+        width: 100% !important;
+        height: 100%;
+        display: block;
+        position: relative;
+    }
 }
 
 .portfolios-item {
-	.fig-wrapper {
-		position: absolute;
-		height: 100%;
-		width: 100%;
-		display: flex;
-		justify-content: flex-start;
-		align-items: flex-end;
-		background: linear-gradient(20deg, rgba(0, 0, 0, 0.45), rgba(255, 0, 0, 0) 75%);
-
-		figcaption {
-			opacity: 0;
-			text-align: left;
-			padding: 0 0 1rem 1rem;
-
-			.portfolios-title,
-			.portfolios-category {
-				margin: 0 !important;
-				text-transform: capitalize;
-			}
-		}
-	}
+    .fig-wrapper {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-end;
+        background: linear-gradient(20deg, rgba(0, 0, 0, 0.45), rgba(255, 0, 0, 0) 75%);
+        figcaption {
+            opacity: 0;
+            text-align: left;
+            padding: 0 0 1rem 1rem;
+            .portfolios-title,
+            .portfolios-category {
+                margin: 0 !important;
+                text-transform: capitalize;
+            }
+        }
+    }
 }
 
 // general portfolios and category hover effect
@@ -442,172 +417,153 @@ section {
 .category-item:hover .img,
 .portfolios-item:hover .fig-wrapper,
 .category-item:hover .fig-wrapper,
-	{
-	opacity: 1;
-	-webkit-transition: all .5s ease;
-	-moz-transition: all .5s ease;
-	transition: all .5s ease;
-	cursor: pointer;
+{
+    opacity: 1;
+    -webkit-transition: all .5s ease;
+    -moz-transition: all .5s ease;
+    transition: all .5s ease;
+    cursor: pointer;
 }
 
 .category-item:hover .category-count {
-	opacity: 1;
+    opacity: 1;
 }
 
-
 .category-item:hover .overlay-background {
-	display: block;
-	border: 1vw solid $dark;
-	background-clip: padding-box;
-	background: rgba(0, 0, 0, 0.5);
+    display: block;
+    border: 1vw solid $dark;
+    background-clip: padding-box;
+    background: rgba(0, 0, 0, 0.5);
 }
 
 .portfolios-item:hover .fig-wrapper {
-	z-index: 1;
+    z-index: 1;
 }
-
 
 .category-item:hover .img,
 .portfolios-item:hover .img {
-	-webkit-transform: scale(1.1);
-	transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
 }
 
 //title on hover effect
 .category-item:hover figcaption,
 .portfolios-item:hover figcaption {
-	opacity: 1;
-	-webkit-transition: all .5s ease;
-	-moz-transition: all .5s ease;
-	transition: all .5s ease;
-	cursor: pointer;
+    opacity: 1;
+    -webkit-transition: all .5s ease;
+    -moz-transition: all .5s ease;
+    transition: all .5s ease;
+    cursor: pointer;
 }
 
 #sticky-wrapper {
-	float: center;
+    float: center;
 }
-
-
-
 
 //responsive youtube video
 .video-responsive {
-	overflow: hidden;
-	padding-bottom: 56.25%;
-	position: relative;
-	height: 0;
+    overflow: hidden;
+    padding-bottom: 56.25%;
+    position: relative;
+    height: 0;
 }
 
 .video-responsive iframe {
-	left: 0;
-	top: 0;
-	height: 100%;
-	width: 100%;
-	position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    position: absolute;
 }
 
 .backtotop {
-	cursor: pointer;
-	font-size: 32px;
-	color: #666;
-	line-height: 40px;
-	position: fixed;
-	right: 0;
-	bottom: 0;
-	margin: 2rem;
-
-	&:hover,
-	&:focus {
-		color: #888;
-	}
+    cursor: pointer;
+    font-size: 32px;
+    color: #666;
+    line-height: 40px;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    margin: 2rem;
+    &:hover,
+    &:focus {
+        color: #888;
+    }
 }
 
-
 //--------responsive youtube video end-------
-
-
 @include max-desktop {
-	.header {
-		height: calc(1rem + 4.5vw + 2vw) !important;
-	}
-
-	#categories {
-		// margin-top: calc((1rem + 4.5vw) - 4vw);
-		margin-top: calc(1rem + 5vw);
-		margin-bottom: calc((1rem + 4.5vw) - 4vw);
-	}
+    .header {
+        height: calc(1rem + 4.5vw + 2vw) !important;
+    }
+    #categories {
+        // margin-top: calc((1rem + 4.5vw) - 4vw);
+        margin-top: calc(1rem + 5vw);
+        margin-bottom: calc((1rem + 4.5vw) - 4vw);
+    }
 }
 
 @include desktop {
-	.header {
-		height: calc(1rem + 5vw + 2vw) !important;
-	}
-
-	#categories {
-		margin-top: calc(1rem + 5vw);
-		margin-bottom: calc(1rem + 5vw);
-	}
+    .header {
+        height: calc(1rem + 5vw + 2vw) !important;
+    }
+    #categories {
+        margin-top: calc(1rem + 5vw);
+        margin-bottom: calc(1rem + 5vw);
+    }
 }
 
 @include Laptop-L {
-	.header {
-		height: calc(1rem + 5.5vw + 2vw) !important;
-	}
-
-	#categories {
-		margin-top: calc((1rem + 5.5vw) - 1vw);
-		margin-bottom: calc((1rem + 5.5vw) - 1vw);
-	}
+    .header {
+        height: calc(1rem + 5.5vw + 2vw) !important;
+    }
+    #categories {
+        margin-top: calc((1rem + 5.5vw) - 1vw);
+        margin-bottom: calc((1rem + 5.5vw) - 1vw);
+    }
 }
 
 @include laptop {
-	.header {
-		height: calc(1rem + 10vw + 2vw) !important;
-	}
-
-	#categories {
-		margin-top: calc((1rem + 10vw) - 5vw);
-		margin-bottom: calc((1rem + 10vw) - 5vw);
-	}
+    .header {
+        height: calc(1rem + 10vw + 2vw) !important;
+    }
+    #categories {
+        margin-top: calc((1rem + 10vw) - 5vw);
+        margin-bottom: calc((1rem + 10vw) - 5vw);
+    }
 }
 
 ;
-
 @include tablet {
-	.header {
-		height: calc(1rem + 12vw + 2vw) !important;
-	}
-
-	#categories {
-		margin-top: calc((1rem + 12vw) - 7vw);
-		margin-bottom: calc((1rem + 12vw) - 7vw);
-	}
+    .header {
+        height: calc(1rem + 12vw + 2vw) !important;
+    }
+    #categories {
+        margin-top: calc((1rem + 12vw) - 7vw);
+        margin-bottom: calc((1rem + 12vw) - 7vw);
+    }
 }
 
 ;
-
 @include mobile-L {
-	.header {
-		height: calc(1rem + 15vw + 2vw) !important;
-	}
-
-	#categories {
-		margin-top: calc((1rem + 15vw) - 10vw);
-		margin-bottom: calc((1rem + 15vw) - 10vw);
-	}
+    .header {
+        height: calc(1rem + 15vw + 2vw) !important;
+    }
+    #categories {
+        margin-top: calc((1rem + 15vw) - 10vw);
+        margin-bottom: calc((1rem + 15vw) - 10vw);
+    }
 }
 
 ;
-
 @include mobile-s {
-	.header {
-		height: calc(1rem + 12vw + 2vw) !important;
-	}
-
-	#categories {
-		margin-top: calc(1rem + 8vw);
-		margin-bottom: calc(1rem + 8vw);
-	}
+    .header {
+        height: calc(1rem + 12vw + 2vw) !important;
+    }
+    #categories {
+        margin-top: calc(1rem + 8vw);
+        margin-bottom: calc(1rem + 8vw);
+    }
 }
 
 ;
