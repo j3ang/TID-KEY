@@ -1,15 +1,41 @@
 extends ../layouts/default
 
 mixin post(post)
-  figure.portfolios-item(data-ks-editable=editable(user, { list: 'Post', id: post.id }))
-    if post.images
-      a.portfolios-link(href='/portfolio/post/' + post.slug)
-        .fig-wrapper
-          figcaption
-            h3.portfolios-title.title= post.title
-            each cat in post.categories 
-              p.portfolios-category=cat.key 
-      img.img(src= post.images.cover.url)
+   figure.portfolios-item(data-ks-editable=editable(user, { list: 'Post', id: post.id }))
+      if post.images
+         a.portfolios-link(href='/portfolio/post/' + post.slug)
+            .fig-wrapper
+               figcaption
+                  h3.portfolios-title.title= post.title
+                  each cat in post.categories 
+                     p.portfolios-category=cat.key 
+         img.img(src= post.images.cover.url)
+
+
+//- carousel
+mixin carousel(id,items)
+   .carousel.slide(id="carousel-" + id ,data-ride="carousel")
+      .carousel-inner(role="listbox")
+         each item,index in items
+            if(index === 0)
+               .item.active
+                  img#feature-img.d-block(src=item.url)
+            else
+               .item
+                  img#feature-img.d-block(src=item.url)
+      //- Indicators
+      ol.carousel-indicators
+         each item,index in items
+            if(index === 0)
+               li.active(data-target="#carousel-" + id, data-slide-to=index)
+            else
+               li(data-target="#carousel-" + id, data-slide-to=index)
+
+      //-  Controls
+      a.left.carousel-control(href="#carousel-" + id, role="button", data-slide="prev")
+         span.sr-only Previous
+      a.right.carousel-control(href="#carousel-" + id, role="button", data-slide="next")
+         span.sr-only Next
 
 
 block content
@@ -17,8 +43,10 @@ block content
       h2 Invalid Post.
    else 
       section#feature.newline(data-ks-editable=editable(user, { list: 'Post', id: data.post.id }))
-            img(src=data.post.images.cover.url)#feature-img
-   
+         //- adding carousel in the post
+         +carousel('post-images', data.post.images.image)
+      //-    img(src=data.post.images.cover.url)#feature-img
+
       section#details.newline
          //- P=data.post
          .title-container
@@ -27,7 +55,7 @@ block content
             .meta-block
                span.meta-title Published On
                p.meta-value= data.post._.publishedDate.format('YYYY/MM/DD')
-            
+
             if data.post.categories != ''
                .meta-block
                   span.meta-title Category
@@ -45,27 +73,27 @@ block content
                .meta-block
                   span.meta-title Client
                   a(href='data.post.client.url').meta-value:  data.post.client.name 
-                  
+
          .content-container
             !=data.post.content.brief
             !=data.post.content.extended
-            
-           
-      
+
+
+
       section#images.newline
-            !=data.post.content.project_img
-            each image in data.post.images.image
-                  img.project-img(src=image.url)
-                  if image.desc
-                        p.project-img
-                              | Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sapiente, reiciendis architecto. 
-                              | At, doloremque veniam doloribus esse iure rerum eligendi? Fugiat sunt totam veniam alias 
-                              | mollitia laborum quis inventore nemo laudantium?'
+         !=data.post.content.project_img
+         each image in data.post.images.image
+            img.project-img(src=image.url)
+            if image.desc
+               p.project-img
+                  | Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sapiente, reiciendis architecto. 
+                  | At, doloremque veniam doloribus esse iure rerum eligendi? Fugiat sunt totam veniam alias 
+                  | mollitia laborum quis inventore nemo laudantium?'
 
       section#related.newline
-            .row
-              h2.text-center.text-capitalize= 'you might also enjoy'
-            #portfolios
-                  each post in data.posts.results
-                        if post.title != data.post.title
-                              +post(post)
+         .row
+            h2.text-center.text-capitalize= 'you might also enjoy'
+         #portfolios
+            each post in data.posts.results
+               if post.title != data.post.title
+                  +post(post)
