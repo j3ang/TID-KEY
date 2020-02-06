@@ -494,7 +494,7 @@ section {
 //--------responsive youtube video end-------
 @include max-desktop {
     .header {
-        height: calc(1rem + 4.5vw + 2vw) !important;
+        height: calc(1rem + 6.5vw) !important;
     }
     #categories {
         // margin-top: calc((1rem + 4.5vw) - 4vw);
@@ -505,7 +505,7 @@ section {
 
 @include desktop {
     .header {
-        height: calc(1rem + 5vw + 2vw) !important;
+        height: calc(1rem + 6.5vw) !important;
     }
     #categories {
         margin-top: calc(1rem + 5vw);
@@ -528,8 +528,7 @@ section {
         height: calc(1rem + 10vw + 2vw) !important;
     }
     #categories {
-        margin-top: calc((1rem + 10vw) - 5vw);
-        margin-bottom: calc((1rem + 10vw) - 5vw);
+        margin: calc((1rem + 10vw) - 5vw) 0;
     }
 }
 
@@ -539,8 +538,7 @@ section {
         height: calc(1rem + 12vw + 2vw) !important;
     }
     #categories {
-        margin-top: calc((1rem + 12vw) - 7vw);
-        margin-bottom: calc((1rem + 12vw) - 7vw);
+        margin: calc((1rem + 12vw) - 7vw) 0;
     }
 }
 
@@ -550,8 +548,7 @@ section {
         height: calc(1rem + 15vw + 2vw) !important;
     }
     #categories {
-        margin-top: calc((1rem + 15vw) - 10vw);
-        margin-bottom: calc((1rem + 15vw) - 10vw);
+        margin: calc((1rem + 15vw) - 10vw);
     }
 }
 
@@ -561,8 +558,7 @@ section {
         height: calc(1rem + 12vw + 2vw) !important;
     }
     #categories {
-        margin-top: calc(1rem + 8vw);
-        margin-bottom: calc(1rem + 8vw);
+        margin: calc(1rem + 8vw);
     }
 }
 
