@@ -8,28 +8,6 @@
     margin-bottom: 6.5vw;
 }
 
-.carousel {
-    overflow: hidden;
-    height: calc(100vw/2 - 5rem);
-    background: white;
-    #feature-img {
-        object-fit: contain;
-        width: 100%;
-        height: -webkit-fill-available;
-        margin-top: 0 !important;
-    }
-    @include desktop {
-        height: calc(100vw/2 - 5rem);
-        max-height: 750px;
-    }
-    @include desktop {
-        height: calc(100vw/2 - 5rem);
-    }
-    @include laptop {
-        height: calc(100vw/2);
-    }
-}
-
 .related-title,
 .title {
     @include max-desktop {}
