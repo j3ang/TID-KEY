@@ -416,8 +416,7 @@ section {
 .portfolios-item:hover .img,
 .category-item:hover .img,
 .portfolios-item:hover .fig-wrapper,
-.category-item:hover .fig-wrapper,
-{
+.category-item:hover .fig-wrapper {
     opacity: 1;
     -webkit-transition: all .5s ease;
     -moz-transition: all .5s ease;
@@ -431,9 +430,9 @@ section {
 
 .category-item:hover .overlay-background {
     display: block;
-    border: 1vw solid $dark;
+    // border: 1vw solid $dark;
     background-clip: padding-box;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.85);
 }
 
 .portfolios-item:hover .fig-wrapper {
@@ -528,7 +527,8 @@ section {
         height: calc(1rem + 10vw + 2vw) !important;
     }
     #categories {
-        margin: calc((1rem + 10vw) - 5vw) 0;
+        margin-top: calc((1rem + 10vw) - 5vw);
+        margin-bottom: calc((1rem + 10vw) - 5vw);
     }
 }
 
@@ -538,7 +538,8 @@ section {
         height: calc(1rem + 12vw + 2vw) !important;
     }
     #categories {
-        margin: calc((1rem + 12vw) - 7vw) 0;
+        margin-top: calc((1rem + 12vw) - 7vw);
+        margin-bottom: calc((1rem + 12vw) - 7vw);
     }
 }
 
@@ -548,7 +549,8 @@ section {
         height: calc(1rem + 15vw + 2vw) !important;
     }
     #categories {
-        margin: calc((1rem + 15vw) - 10vw);
+        margin-top: calc((1rem + 15vw) - 10vw);
+        margin-bottom: calc((1rem + 15vw) - 10vw);
     }
 }
 
@@ -558,7 +560,8 @@ section {
         height: calc(1rem + 12vw + 2vw) !important;
     }
     #categories {
-        margin: calc(1rem + 8vw);
+        margin-top: calc(1rem + 8vw);
+        margin-bottom: calc(1rem + 8vw);
     }
 }
 

@@ -8,7 +8,7 @@
 //
 // You can also add your own custom variables to this file for
 // use in your site stylesheets.
-@import "site/variables-light";
+@import "site/variables";
 // Site Styles
 // ===========
 // Add your own site style includes here
@@ -188,37 +188,6 @@ $bouncy: cubic-bezier(.84,
     height: 0 !important;
 }
 
-// .contact-email {
-//    .form-control {
-//       background: transparent;
-//       border: none;
-//       border-bottom: solid 2px $light;
-//       border-radius: none;
-//       &:active {
-//          outline: 0;
-//          background: transparent;
-//          border: none;
-//          border-bottom: solid 2px $light;
-//          border-radius: none;
-//       }
-//    }
-// }
-.mailing-form {
-    form {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        .form-group {
-            margin-bottom: 0 !important;
-            width: 100%;
-            input {
-                border-right: none;
-            }
-        }
-    }
-}
-
 button,
 .mailing-form .form-group input {
     background: transparent !important;
@@ -320,6 +289,7 @@ h2 {
     @include bp(600,
     max-width) {
         font-size: 1.3125em !important;
+        line-height: 1.142857142 !important;
         margin-bottom: 1.142857142em !important;
     }
 }
@@ -371,7 +341,6 @@ li {
 img.project-img {
     display: block;
     width: 100%;
-    height: 100%;
 }
 
 section {
@@ -418,6 +387,9 @@ section {
         display: block;
         position: relative;
     }
+}
+
+.portfolios-item {
     .fig-wrapper {
         position: absolute;
         height: 100%;
@@ -432,7 +404,6 @@ section {
             padding: 0 0 1rem 1rem;
             .portfolios-title,
             .portfolios-category {
-                color: $dark !important;
                 margin: 0 !important;
                 text-transform: capitalize;
             }
@@ -445,8 +416,7 @@ section {
 .portfolios-item:hover .img,
 .category-item:hover .img,
 .portfolios-item:hover .fig-wrapper,
-.category-item:hover .fig-wrapper,
-{
+.category-item:hover .fig-wrapper {
     opacity: 1;
     -webkit-transition: all .5s ease;
     -moz-transition: all .5s ease;
@@ -460,9 +430,9 @@ section {
 
 .category-item:hover .overlay-background {
     display: block;
-    border: 1vw solid $dark;
+    // border: 1vw solid $dark;
     background-clip: padding-box;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.85);
 }
 
 .portfolios-item:hover .fig-wrapper {
@@ -557,7 +527,8 @@ section {
         height: calc(1rem + 10vw + 2vw) !important;
     }
     #categories {
-        margin: calc((1rem + 10vw) - 5vw) 0;
+        margin-top: calc((1rem + 10vw) - 5vw);
+        margin-bottom: calc((1rem + 10vw) - 5vw);
     }
 }
 
@@ -567,7 +538,8 @@ section {
         height: calc(1rem + 12vw + 2vw) !important;
     }
     #categories {
-        margin: calc((1rem + 12vw) - 7vw) 0;
+        margin-top: calc((1rem + 12vw) - 7vw);
+        margin-bottom: calc((1rem + 12vw) - 7vw);
     }
 }
 
@@ -577,7 +549,8 @@ section {
         height: calc(1rem + 15vw + 2vw) !important;
     }
     #categories {
-        margin: calc((1rem + 15vw) - 10vw);
+        margin-top: calc((1rem + 15vw) - 10vw);
+        margin-bottom: calc((1rem + 15vw) - 10vw);
     }
 }
 
@@ -587,7 +560,8 @@ section {
         height: calc(1rem + 12vw + 2vw) !important;
     }
     #categories {
-        margin: calc(1rem + 8vw);
+        margin-top: calc(1rem + 8vw);
+        margin-bottom: calc(1rem + 8vw);
     }
 }
 
