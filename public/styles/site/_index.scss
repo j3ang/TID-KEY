@@ -60,6 +60,18 @@
                         align-items: center;
                         justify-content: center;
                         figcaption {
+                            position: relative;
+                            .category-name::after {
+                                content: '';
+                                position: absolute;
+                                width: 100%;
+                                height: 25px;
+                                background: #515151c7;
+                                left: 0;
+                                bottom: 0;
+                                z-index: -1;
+                                border-bottom: solid 1px;
+                            }
                             .category-count {
                                 display: none;
                                 opacity: 1;
