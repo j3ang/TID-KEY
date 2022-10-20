@@ -15,7 +15,7 @@
     "keystone-email": "^1.1.0",
     "keystone-forgotten-password": "^1.4.0",
     "lodash": "^4.17.15",
-    "mongoose": "5.8.1",
+    "mongoose": "4.13.21",
     "node-sass": "4.13.1",
     "node-sass-middleware": "^0.11.0",
     "owl.carousel": "^2.3.4",
